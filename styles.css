@@ -1,0 +1,84 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --ink: #1e2a3a;
+  --muted: #67758a;
+  --border: #d8e1ed;
+  --accent: #4f7cff;
+  --todo: #e8edf7;
+  --inprogress: #fff2da;
+  --done: #def7e8;
+}
+
+* { box-sizing: border-box; font-family: Inter, system-ui, sans-serif; }
+body { margin: 0; background: var(--bg); color: var(--ink); }
+header { padding: 1rem 1.5rem; background: #111827; color: #f9fafb; }
+header h1 { margin: 0; }
+header p { margin: 0.25rem 0 0; color: #d1d5db; }
+main {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  padding: 1rem;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgb(10 30 80 / 8%);
+}
+#dashboard, #notifications { grid-column: span 2; }
+.section-header { display: flex; align-items: center; justify-content: space-between; }
+h2 { margin: 0 0 0.75rem; font-size: 1.1rem; }
+button, select, input, textarea {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+}
+button { cursor: pointer; background: white; }
+button:hover { border-color: var(--accent); }
+#addTaskBtn, #addRaidBtn { background: var(--accent); color: white; border-color: var(--accent); }
+.views { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+.views .active { background: var(--accent); color: white; border-color: var(--accent); }
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
+.metric {
+  border: 1px solid var(--border);
+  padding: 0.75rem;
+  border-radius: 10px;
+}
+.metric span { display: block; color: var(--muted); font-size: 0.85rem; }
+.metric strong { font-size: 1.4rem; }
+.columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+.column { background: #f8faff; border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem; min-height: 180px; }
+.column h3 { margin: 0.2rem 0 0.7rem; font-size: 0.95rem; }
+.task {
+  border: 1px solid var(--border);
+  background: white;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.task small { color: var(--muted); }
+.task.todo { background: var(--todo); }
+.task.in-progress { background: var(--inprogress); }
+.task.done { background: var(--done); }
+.list-table { width: 100%; border-collapse: collapse; }
+.list-table th, .list-table td { border-bottom: 1px solid var(--border); padding: 0.5rem; text-align: left; font-size: 0.9rem; }
+.timeline { display: grid; gap: 0.6rem; }
+.timeline-row { border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem; }
+.bar { height: 10px; background: linear-gradient(90deg, #90caf9, #4f7cff); border-radius: 999px; margin-top: 0.35rem; }
+.filters { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+.raid-item { border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem; margin-bottom: 0.55rem; }
+.badge { display: inline-block; padding: 0.15rem 0.45rem; border-radius: 999px; font-size: 0.75rem; border: 1px solid var(--border); margin-right: 0.35rem; }
+#notificationList { margin: 0; padding-left: 1rem; max-height: 200px; overflow: auto; }
+#notificationList li { margin: 0.3rem 0; font-size: 0.9rem; }
+dialog { border: 1px solid var(--border); border-radius: 12px; width: min(500px, 94vw); }
+form { display: grid; gap: 0.6rem; }
+label { display: grid; gap: 0.25rem; font-size: 0.88rem; color: var(--muted); }
+menu { display: flex; justify-content: flex-end; gap: 0.5rem; margin: 0.5rem 0 0; padding: 0; }
+@media (max-width: 900px) {
+  #dashboard, #notifications { grid-column: span 1; }
+  .columns { grid-template-columns: 1fr; }
+}

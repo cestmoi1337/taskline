@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taskline MVP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Taskline</h1>
+      <p>Visual planning + lightweight RAID discipline</p>
+    </header>
+
+    <main>
+      <section class="card" id="dashboard">
+        <h2>Dashboard</h2>
+        <div class="metrics" id="metrics"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-header">
+          <h2>Projects & Tasks</h2>
+          <button id="addTaskBtn">+ Task</button>
+        </div>
+
+        <div class="views">
+          <button class="active" data-view="board">Board</button>
+          <button data-view="list">List</button>
+          <button data-view="timeline">Timeline</button>
+        </div>
+
+        <div id="taskContainer"></div>
+      </section>
+
+      <section class="card" id="taskDetails">
+        <h2>Task Details</h2>
+        <div id="detailContent">Select a task to view details, comments, and activity.</div>
+      </section>
+
+      <section class="card" id="raidLog">
+        <div class="section-header">
+          <h2>RAID Log</h2>
+          <button id="addRaidBtn">+ RAID Item</button>
+        </div>
+        <div class="filters">
+          <select id="raidCategoryFilter">
+            <option value="all">All Categories</option>
+            <option value="Risk">Risk</option>
+            <option value="Assumption">Assumption</option>
+            <option value="Issue">Issue</option>
+            <option value="Dependency">Dependency</option>
+          </select>
+          <select id="raidStatusFilter">
+            <option value="all">All Statuses</option>
+            <option value="Open">Open</option>
+            <option value="Mitigated">Mitigated</option>
+            <option value="Closed">Closed</option>
+          </select>
+        </div>
+        <div id="raidContainer"></div>
+      </section>
+
+      <section class="card" id="notifications">
+        <h2>Notifications</h2>
+        <ul id="notificationList"></ul>
+      </section>
+    </main>
+
+    <dialog id="taskDialog">
+      <form method="dialog" id="taskForm">
+        <h3>Create Task</h3>
+        <label>Task name <input required name="name" /></label>
+        <label>Assignee <input required name="assignee" /></label>
+        <label>Status
+          <select name="status">
+            <option>Todo</option>
+            <option>In Progress</option>
+            <option>Done</option>
+          </select>
+        </label>
+        <label>Start date <input required type="date" name="startDate" /></label>
+        <label>Due date <input required type="date" name="dueDate" /></label>
+        <label>Depends on
+          <select name="dependency" id="dependencySelect">
+            <option value="">None</option>
+          </select>
+        </label>
+        <menu>
+          <button value="cancel">Cancel</button>
+          <button id="saveTaskBtn" value="default">Save</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <dialog id="raidDialog">
+      <form method="dialog" id="raidForm">
+        <h3>Create RAID Item</h3>
+        <label>Category
+          <select name="category">
+            <option>Risk</option>
+            <option>Assumption</option>
+            <option>Issue</option>
+            <option>Dependency</option>
+          </select>
+        </label>
+        <label>Title <input required name="title" /></label>
+        <label>Description <textarea required name="description"></textarea></label>
+        <label>Owner <input required name="owner" /></label>
+        <label>Status
+          <select name="status">
+            <option>Open</option>
+            <option>Mitigated</option>
+            <option>Closed</option>
+          </select>
+        </label>
+        <label>Priority
+          <select name="priority">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+        </label>
+        <label>Due date <input type="date" name="dueDate" /></label>
+        <label>Linked Task
+          <select name="taskId" id="raidTaskSelect">
+            <option value="">None</option>
+          </select>
+        </label>
+        <menu>
+          <button value="cancel">Cancel</button>
+          <button value="default">Save</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
